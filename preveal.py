@@ -5,13 +5,11 @@ def reveal(dir: str):
     return reveal_file(dir)
 
 def reveal_file(dir: str):
-    # todo: add support for open with specific appc
     try:
         if platform.system() == 'Darwin':
             _subprocess_open('open', dir)
             return
         elif platform.system() == 'Windows':
-            # todo: implement regex for C:, D:, and more, basically [A-Z]\:
             disk = str() if dir.strip().startswith('C:') else 'C:'
             _subprocess_open('explorer', f'{disk}{dir}')
             return
